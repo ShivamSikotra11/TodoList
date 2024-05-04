@@ -39,11 +39,11 @@ const TodoTasks = () => {
           + New task
         </button>
         {showForm && (
-          <div className="absolute flex justify-between items-center top-[1rem] bg-white focus:border-red-500 px-4 py-4 w-full max-w-md">
+          <div className="absolute flex justify-between items-center top-[1rem] bg-white   px-4 py-4 w-full max-w-md">
           <input
             type="text"
             placeholder="Enter task"
-            className="border-2 border-primary focus:border-transparent p-2 w-[90%] "
+            className="border-2 border-primary focus:border-primary p-2 w-[90%] "
             ref={taskRef}
           />
           <button
