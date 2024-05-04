@@ -17,12 +17,12 @@ const TodoItem = ({ item,index }) => {
   };
 
   return (
-    <div className="flex items-center py-1  ">
+    <div className="flex items-center py-1 w-full ">
       <span
         className={`w-3 h-3 rounded-full border border-gray ${isCompleted ? 'bg-purple-300' : 'bg-[#f9fcff]'} mr-2 cursor-pointer`}
         onClick={handleToggleComplete}
       ></span>
-      <span className={`text-xl text-black font-medium ${isCompleted ? 'line-through' : ''} flex-grow`}>{item.task}</span>
+      <div className={`text-xl text-black font-medium ${isCompleted ? 'line-through' : ''} flex-grow  break-words w-[85%] `}>{item.task}</div>
       <MdDeleteOutline size={23} color="gray" className='cursor-pointer' onClick={handleDelete} />
     </div>
   );
