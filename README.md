@@ -1,6 +1,6 @@
 # Task Itinerary
 
-Task Itinerary is a user-friendly task management application that helps users organize their daily tasks effectively. With its intuitive user interface and seamless functionality, users can easily add new tasks, mark tasks as completed, and delete tasks as needed. 
+Task Itinerary is a user-friendly task management application that helps users organize their daily tasks effectively. With its intuitive user interface and seamless functionality, users can easily add new tasks, mark tasks as completed, and delete tasks as needed.Built using modern web technologies such as React, Redux, and Tailwind CSS, this app offers a responsive and visually appealing experience across different devices and screen sizes.
 
 ## Features
 
