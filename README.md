@@ -13,6 +13,16 @@ Task Itinerary is a user-friendly task management application that helps users o
 - React: A JavaScript library for building user interfaces.
 - Redux: A predictable state container for managing application state.
 - Tailwind CSS: A utility-first CSS framework for rapidly building custom designs.
+## Screenshots
+
+### Laptop
+![Laptop Screenshot](laptop-view.png)
+
+### Tablet
+![Tablet Screenshot](tablet-view.png)
+
+### Mobile
+![Mobile Screenshot](mobile-view.png)
 
 ## Installation
 
