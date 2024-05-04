@@ -16,13 +16,13 @@ Task Itinerary is a user-friendly task management application that helps users o
 ## Screenshots
 
 ### Laptop
-![Laptop Screenshot](laptop-view.png)
+![Laptop Screenshot](laptop-view.jpg)
 
 ### Tablet
-![Tablet Screenshot](tablet-view.png)
+![Tablet Screenshot](tablet-view.jpg)
 
 ### Mobile
-![Mobile Screenshot](mobile-view.png)
+![Mobile Screenshot](mobile-view.jpg)
 
 ## Installation
 
