@@ -23,7 +23,7 @@ git clone https://github.com/ShivamSikotra11/TodoList.git
 ```
 2. Navigate to the project directory:
 ```bash
-cd todo-list-react-app
+cd TodoList
 ```
 3. Install dependencies:
 ```bash
