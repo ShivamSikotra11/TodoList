@@ -1,4 +1,4 @@
-# TodoList React App
+# Task Itinerary
 
 TodoList React App is a user-friendly task management application that helps users organize their daily tasks effectively. With its intuitive user interface and seamless functionality, users can easily add new tasks, mark tasks as completed, and delete tasks as needed. 
 
