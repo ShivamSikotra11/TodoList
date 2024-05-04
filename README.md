@@ -19,7 +19,7 @@ Task Itinerary is a user-friendly task management application that helps users o
 1. Clone the repository:
 
 ```bash
-git clone [<repository-url>](https://github.com/ShivamSikotra11/TodoList.git)
+git clone https://github.com/ShivamSikotra11/TodoList.git
 ```
 2. Navigate to the project directory:
 ```bash
