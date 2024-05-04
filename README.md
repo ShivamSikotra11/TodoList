@@ -30,7 +30,7 @@ cd TodoList
 npm install
 ```
 ## Live Demo
-You can also access the live demo of the TodoList React App [here](https://taskitinerary.netlify.app/)
+You can also access the live demo of Task Itinerary [here](https://taskitinerary.netlify.app/)
 ## Usage
 
 1. Start the development server:
