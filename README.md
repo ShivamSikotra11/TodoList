@@ -6,24 +6,26 @@ Task Itinerary is a user-friendly task management application that helps users o
 
 - Add new tasks to the todo list.
 - Mark tasks as completed or incomplete.
+- Edit existing tasks.
 - Delete tasks from the todo list.
+- Store tasks persistently for each user using MongoDB.
+- Due date validation to ensure tasks cannot have past due dates.
 
 ## Technologies Used
 
-- React: A JavaScript library for building user interfaces.
-- Redux: A predictable state container for managing application state.
-- Tailwind CSS: A utility-first CSS framework for rapidly building custom designs.
-## Screenshots
+- **Frontend:**
+  - React: A JavaScript library for building user interfaces.
+  - Redux: A predictable state container for managing application state.
+  - Tailwind CSS: A utility-first CSS framework for rapidly building custom designs.
+  - Axios: A promise-based HTTP client for making API requests.
+  - Material UI: A popular React UI framework with a comprehensive set of components.
 
-### Laptop
-![Laptop Screenshot](laptop-view.jpg)
-
-### Tablet
-![Tablet Screenshot](tablet-view.jpg)
-
-### Mobile
-![Mobile Screenshot](mobile-view.jpg)
-
+- **Backend:**
+  - Node.js: A JavaScript runtime built on Chrome's V8 JavaScript engine.
+  - Express: A minimal and flexible Node.js web application framework.
+  - MongoDB: A NoSQL database for storing user tasks.
+  - Mongoose: An ODM (Object Data Modeling) library for MongoDB and Node.js.
+ 
 ## Installation
 
 1. Clone the repository:
