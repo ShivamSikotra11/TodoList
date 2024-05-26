@@ -40,7 +40,7 @@ const userProvider = ({ children }) => {
     if (localStorage.getItem('userData')) {
       return JSON.parse(localStorage.getItem('userData'));
     }
-    return {};
+    return null;
   }
 
   const handleLoginSubmit = async (redirect, userData) => {

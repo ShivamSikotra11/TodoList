@@ -21,10 +21,11 @@ import { useUserContext } from "../store/userContext";
 
 const TodoBox = () => {
   const { userTasks } = useTaskContext();
+  const { loggedIn } = useUserContext();
 
   useEffect(()=>{
     // console.log("tasks chanegs");
-  }, [userTasks,userTasks.length]);
+  }, [userTasks,loggedIn]);
   
   return (
     <div className='max-[425px]:w-[20rem] max-[325px]:w-[18rem]' >

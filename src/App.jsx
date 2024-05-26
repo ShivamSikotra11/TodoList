@@ -39,7 +39,7 @@ const AppWithHeader = () => {
       setLoading(false);
     }
 
-  }, []);
+  }, [loggedIn]);
   // useEffect(() => {
   //   const storedUserData = localStorage.getItem("userData");
   //   if (storedUserData) {
