@@ -13,6 +13,8 @@ export default {
       },
       fontFamily: {
         'poppin': ['Poppins', 'sans-serif'],
+        'sora': ['Sora', 'sans-serif'],
+        'outfit': ['Outfit', 'sans-serif'],
       },
     },
   },

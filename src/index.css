@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+}
+body{
+  background-color: #e3ebfb;
+
+}
+
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px; 
   height: 6px; 

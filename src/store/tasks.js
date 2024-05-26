@@ -5,13 +5,7 @@ const storedTasks = JSON.parse(localStorage.getItem("tasks"));
 const initialState = {
   allTasks: storedTasks
     ? storedTasks
-    : [
-        { task: "To Workout", isCompleted: false },
-        { task: "Going Gym", isCompleted: false },
-        { task: "Doing Yoga", isCompleted: false },
-        { task: "Meditation", isCompleted: false },
-        { task: "Reading Books", isCompleted: false },
-      ],
+    : [],
 };
 
 const TasksSlice = createSlice({
@@ -33,6 +27,14 @@ const TasksSlice = createSlice({
       state.allTasks = state.allTasks.filter((task, index) => index !== action.payload);
       localStorage.setItem("tasks", JSON.stringify(state.allTasks));
     },
+    updateTask: (state, action) => {
+      const { index, updatedTask } = action.payload;
+      if (index >= 0 && index < state.allTasks.length) {
+        state.allTasks[index] = { ...state.allTasks[index], ...updatedTask };
+        localStorage.setItem("tasks", JSON.stringify(state.allTasks));
+      }
+    },
+    
   },
 });
 
