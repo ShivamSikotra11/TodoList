@@ -35,8 +35,6 @@ const userSchema = new Schema({
   name: {
     type: String,
     required: true,
-    minlength: 6,
-    maxlength: 255
   },
   email: {
     type: String,
