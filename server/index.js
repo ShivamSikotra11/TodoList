@@ -2,41 +2,35 @@ const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 require("./config");
-const userModel = require("./models/users")
+const userModel = require("./models/users");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
-// app.use(cors(
-//   {
-//     origin:["https://taskitinerary.netlify.app","http://localhost:3000","https://todo-list-topaz-gamma.vercel.app","http://localhost:5173"],
-//     methods:["GET","POST"],
-//     credentials:true
-//   }
-// ));
 
- 
-// const allowedOrigins = [
-//   "https://taskitinerary.netlify.app",
-//   "http://localhost:8000",
-//   "https://todo-list-topaz-gamma.vercel.app",
-//   "http://localhost:5173"
-// ];
+const allowedOrigins = [
+  "https://taskitinerary.netlify.app",
+  "http://localhost:3000",
+  "https://todo-list-topaz-gamma.vercel.app",
+  "http://localhost:5173"
+];
 
-// app.use(cors({
-//   origin: function (origin, callback) {
-//     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error("Not allowed by CORS"));
-//     }
-//   },
-//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//   credentials: true
-// }));
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, origin);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true
+}));
 
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", allowedOrigins);
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.header("Access-Control-Allow-Origin", origin);
+  }
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.header("Access-Control-Allow-Credentials", "true");
@@ -46,11 +40,10 @@ app.use((req, res, next) => {
   next();
 });
 
-
 app.post("/register", async (req, res) => {
   const { name, email, password } = req.body;
   try {
-    const user = await userModel.findOne({ email: email });
+    const user = await userModel.findOne({ email });
     if (user) {
       res.status(401).json({ message: "User already exists" });
     } else {
@@ -64,10 +57,11 @@ app.post("/register", async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
+
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await userModel.findOne({ email: email });
+    const user = await userModel.findOne({ email });
     if (user) {
       const passwordMatch = await bcrypt.compare(password, user.password);
       if (passwordMatch) {
@@ -84,48 +78,41 @@ app.post("/login", async (req, res) => {
   }
 });
 
-
 app.post("/tasks/add_task", async (req, res) => {
-  const { email,...task } = req.body;
-  console.log(email, task);
+  const { email, ...task } = req.body;
   try {
     const updatedUser = await userModel.findOneAndUpdate(
-      { email: email },
+      { email },
       { $push: { tasks: task } },
+      { new: true }
     );
     res.status(200).json("successful");
   } catch (error) {
-    console.error("Error adding post:", error);
+    console.error("Error adding task:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 });
 
- 
-
 app.post("/tasks", async (req, res) => {
-  
   const { email } = req.body;
   try {
-    const user = await userModel.findOne({ email: email });
-    // console.log(user);
+    const user = await userModel.findOne({ email });
     if (user) {
       res.status(200).json(user.tasks);
     } else {
       res.status(404).json({ message: "User not found" });
     }
   } catch (error) {
-    console.error("Error getting stocks:", error);
+    console.error("Error getting tasks:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 });
 
 app.delete("/tasks/:id", async (req, res) => {
   const taskId = req.params.id;
-  // console.log(req.body);
   const { email } = req.body;
-  // console.log(taskId, email);
   try {
-    const user = await userModel.findOne({ email: email });
+    const user = await userModel.findOne({ email });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -141,7 +128,6 @@ app.delete("/tasks/:id", async (req, res) => {
 app.put("/tasks/:id", async (req, res) => {
   const taskId = req.params.id;
   const { email, task } = req.body;
-  // console.log(taskId);
   try {
     const user = await userModel.findOneAndUpdate(
       { email, "tasks._id": taskId },
@@ -158,9 +144,9 @@ app.put("/tasks/:id", async (req, res) => {
   }
 });
 
-app.get("/",(_,res)=>{
+app.get("/", (_, res) => {
   res.send("Welcome");
-})
+});
 
 app.listen(8000, () => {
   console.log("Server is running on port 8000");
