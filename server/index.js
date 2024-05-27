@@ -7,13 +7,48 @@ const userModel = require("./models/users")
 const app = express();
 app.use(express.json());
 // app.use(cors());
-app.use(cors(
-  {
-    origin:["https://taskitinerary.netlify.app","http://localhost:3000","https://todo-list-topaz-gamma.vercel.app","http://localhost:5173"],
-    methods:["GET","POST"],
-    credentials:true
+// app.use(cors(
+//   {
+//     origin:["https://taskitinerary.netlify.app","http://localhost:3000","https://todo-list-topaz-gamma.vercel.app","http://localhost:5173"],
+//     methods:["GET","POST"],
+//     credentials:true
+//   }
+// ));
+
+
+const app = express();
+app.use(express.json());
+
+const allowedOrigins = [
+  "https://taskitinerary.netlify.app",
+  "http://localhost:3000",
+  "https://todo-list-topaz-gamma.vercel.app",
+  "http://localhost:5173"
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true
+}));
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", allowedOrigins);
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", "true");
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
   }
-));
+  next();
+});
+
 
 app.post("/register", async (req, res) => {
   const { name, email, password } = req.body;
